@@ -1,0 +1,16 @@
+php:
+  build: .
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   - ./www:/var/www/html
+  links:
+   - mysql:mysql
+mysql:
+  image: mysql:latest
+  volumes:
+   - /var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=secret
+   - MYSQL_DATABASE=mysql
