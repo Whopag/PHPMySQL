@@ -15,7 +15,7 @@
     define('HOST', 'mysql');
     define('DATABASE', 'db');
     define('USER', 'root');
-    define('PASSWORD', 'phprs');
+    define('PASSWORD', 'secret');
     define('PORT', 3306);
 ?>
 
@@ -31,9 +31,7 @@
 
         echo "php --version: " . phpversion() . "<br />";
 
-        $createTable = "CREATE TABLE colors ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, color VARCHAR(32));";
-
-        $pdo->query($createTable);
+        $pdo->query("CREATE TABLE colors ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, color VARCHAR(32));");
 
         echo "Connected to MySQL<br />";
 
