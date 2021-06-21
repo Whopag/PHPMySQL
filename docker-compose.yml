@@ -1,16 +1,31 @@
-php:
-  build: .
-  ports:
-   - "80:80"
-   - "443:443"
-  volumes:
-   - ./www:/var/www/html
-  links:
-   - mysql:mysql
-mysql:
-  image: mysql:latest
-  volumes:
-   - /var/lib/mysql
-  environment:
-   - MYSQL_ROOT_PASSWORD=secret
-   - MYSQL_DATABASE=mysql
+version: '3'
+
+services:
+  php:
+    build: .
+    restart: unless-stopped
+    tty: true
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./www:/var/www/html
+    links:
+    - mysql:mysql
+    networks:
+      - app-network
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    tty: true
+    command: --innodb-use-native-aio=0
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=secret
+    - MYSQL_DATABASE=mysql
+    networks:
+      - app-network
+networks:
+  app-network:
+      driver: bridge
