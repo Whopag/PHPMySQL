@@ -17,6 +17,10 @@
 <h6 align="center">Linux</h6>
 
 ```bash
+    sudo systemctl start docker
+```
+
+```bash
     sudo docker-compose up -d
 ```
 
