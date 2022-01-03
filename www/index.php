@@ -20,7 +20,7 @@
 ?>
 
 <?php
-    $pdo = new PDO(sprintf("mysql:host=%s;dbname=db;port=%s", HOST, DATABASE, PORT), USER, PASSWORD);
+    $pdo = new PDO(sprintf("mysql:host=%s;dbname=%s;port=%s", HOST, DATABASE, PORT), USER, PASSWORD);
 
     if ($pdo instanceof \PDO) {
         $stm = $pdo->query("SELECT VERSION()");
